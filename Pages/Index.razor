@@ -1,0 +1,206 @@
+﻿@page "/"
+
+<PageTitle>Counterweight Calculator</PageTitle>
+
+<h1 class="w3-center">Telescope Counterweight Calculator</h1>
+<div class="w3-padding">
+<h2>Instructions</h2>
+<p>
+As astronomers of all skill levels know, having a correctly balanced telescope on an equatorial mount is crutial for taking great photos of deep-sky objects. Most astronomers just determine the amount of weight and where to put the counterweights on the counterweight bar through experimentation. This tool is designed to provide a different approach. Say you already own a counterweight and you want to figure out exactly where the counterweight should be positioned; or say that you have a counterweight bar of a fixed length and you need to know what mass is required at the end of that bar, well this tool can calculate those for you. 
+</p>
+<p>
+    <ol>
+        <li>First enter the weight of your imaging rig under <b>Telescope Mass</b>. This includes your primary telescope, guide-scope, autofocuser, camera etc. Remember to select the appropriate units of mass.</li>
+        <li>Enter the distance that your imaging rig is from the pivot point of your equatorial mount. This is basically the distance from the center of the mount head to the center of your primary telescope (center of mass of the imaging rig). Remember to select the appropriate units of distance.</li>
+        <li>
+            Select one of the methods below:
+            <ul>
+                <li>If you know your counterweight mass and want to determine distance, enter the mass of your counterweight under <b>Counterweight Mass</b> and then slowly increase the <b>Counterweight Distance From Pivot</b> until the diagram shows that your telescope is balanced.</li>
+            </ul>
+            <p class="w3-center">
+                OR
+            </p>
+            <ul>
+                <li>If you know the max distance and want to determine what weight is required, enter the length of your counterweight bar under <b>Counterweight Distance From Pivot</b> and then slowly increase the <b>Counterweight Mass</b> until the diagram shows that your telescope is balanced.</li>
+            </ul>
+        </li>
+    </ol>
+</p>
+</div>
+
+<div class="w3-margin-bottom w3-padding">
+    <div style="height: 480px; width: 480px; position: relative; margin-left: auto; margin-right: auto;">
+        <img alt="tripod" style="position: absolute; left: 0; top: 0; height: 100%; width: 100%" src="images/tripod.svg">
+        <img alt="mount head" style="position: absolute; left: 0; top: 0; height: 100%; width: 100% transform-origin: center; transform: rotate(@(Angle)deg);" src="images/telescope.svg">
+
+        <div id="arrows" class="w3-jumbo w3-display-container" style="position: absolute; left: 0; top: 0; height: 100%; width: 100%; color: blue">
+            @if (TorqueTelescope < TorqueCounterweight) {
+                <div class="w3-display-left">
+                    &darr;
+                </div>
+                <div class="w3-display-right">
+                    &uarr;
+                </div>
+                <div class="w3-display-left w3-large w3-text-white">
+                    @((Math.Abs(TorqueTelescope) - Math.Abs(TorqueCounterweight)).ToString("#.00"))Nm
+                </div>
+            } else if (TorqueCounterweight < TorqueTelescope) {
+                <div class="w3-display-left">
+                    &uarr;
+                </div>
+                <div class="w3-display-right">
+                    &darr;
+                </div>
+                <div class="w3-display-right w3-large w3-text-white">
+                    @((Math.Abs(TorqueCounterweight) - Math.Abs(TorqueTelescope)).ToString("#.00"))Nm
+                </div>
+            } else if (TorqueCounterweight == TorqueTelescope) {
+                <div class="w3-display-topmiddle">
+                    Balanced
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="w3-row-padding">
+    <div id="telescope" class="w3-half">
+        <label>Telescope Mass </label>
+        <div class="w3-row">
+            <input class="w3-input w3-half" type="number" @bind="telescope_mass_raw"/>
+            <select class="w3-select w3-half" @bind="telescope_mass_units">
+                @foreach (var weight in weight_conversions) {
+                <option value="@weight.Key">@weight.Key</option>
+                }
+            </select>
+        </div>
+        <label>Telescope Center of Mass Distance From Pivot <span style="color: yellow">&rarr;</span></label>
+        <div class="w3-row">
+            <input class="w3-input w3-half" type="number" @bind="telescope_distance_raw"/>
+            <select class="w3-select w3-half" @bind="telescope_distance_units">
+                @foreach (var dist in distance_conversions) {
+                <option value="@dist.Key">@dist.Key</option>
+                }
+            </select>
+        </div>
+        <label>Telescope Force Due to Gravity</label>
+        <p class="w3-border-bottom">@telescope_mass_N Newtons</p>
+        <label>Telescope Torque Around Pivot</label>
+        <p class="w3-border-bottom">@TorqueTelescope Nm</p>
+    </div>
+    <div id="counterweight" class="w3-half">
+        @{
+            var index = 1;
+            foreach (var counterweight in this.counterweights) {
+                <label>Counterweight (@index) Mass</label>
+                <div class="w3-row">
+                    <input class="w3-input w3-half" type="number" @bind="counterweight.counterweight_mass_raw"/>
+                    <select class="w3-select w3-half" @bind="counterweight.counterweight_mass_units">
+                        @foreach (var weight in weight_conversions) {
+                        <option value="@weight.Key">@weight.Key</option>
+                        }
+                    </select>
+                </div>
+                <label>Counterweight (@index) Distance From Pivot <span style="color: red">&rarr;</span></label>
+                <div class="w3-row">
+                    <input class="w3-input w3-half" type="number" @bind="counterweight.counterweight_distance_raw"/>
+                    <select class="w3-select w3-half" @bind="counterweight.counterweight_distance_units">
+                        @foreach (var dist in distance_conversions) {
+                        <option value="@dist.Key">@dist.Key</option>
+                        }
+                    </select>
+                </div>
+                <label>Counterweight (@index) Force Due to Gravity</label>
+                <p class="w3-border-bottom">@counterweight.counterweight_mass_N Newtons</p>
+                index++;
+            }
+        }
+                <label>Total Counterweight Torque Around Pivot</label>
+                <p class="w3-border-bottom">@TorqueCounterweight Nm</p>
+
+        <div class="w3-row">
+            <div class="w3-half">
+                <button class="w3-button" style="width:100%; text-align: right;" @onclick=del>- Counterweight</button>
+            </div>
+            <div class="w3-half">
+                <button class="w3-button" style="width:100%; text-align: left;" @onclick=add>+ Counterweight</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="w3-padding w3-margin-top">
+<h2 style="w3-margin-top">How does it work?</h2>
+<p>
+    Basically, this is a simply problem of balancing the torque created by the mass of the imaging rig with the torque created by the mass of the counterweight. If the two torques are the same then there is no net-torque on the mount and it can operate ideally without having to struggle against the forces of gravity as it adjusts the telescope.
+</p>
+<p>
+    To calculate torque we first need to know the force applied to the mount as a result of gravity on the masses. We can do this by using Newton's 2nd law.
+</p>
+<p class="w3-center w3-large">
+    Force <sub>due to gravity</sub> = Mass &times; Acceleration<sub>due to gravity</sub><br>
+    Force <sub>due to gravity</sub> = Mass &times; -9.8m/s<sup>2</sup>
+</p>
+<p>
+    Once we have a force we can compute torque using the previously computed force along with the distance away from the point of rotation (pivot) where the force is being applied at.
+</p>
+<p class="w3-center w3-large">
+    Torque = Force &times; Distance<sub>from pivot</sub>
+</p>
+<p>
+    We do this process for both the imaging rig (telescope) and the counterweight and then compare the two torques. A net torque can be computed on the whole system by subtracting the two.
+</p>
+<p class="w3-center w3-large">
+    Net Torque = Torque<sub>telscope</sub> - Torque<sub>counterweight</sub>
+</p>
+<p>
+    A mount is perfectly balanced when this net torque is 0. However it may be difficult to obtain 0 practically (due to fixed weights that can be purchased), so just get as close to 0 as possible.
+</p>
+</div>
+
+@code {
+
+    public static readonly float gravity_acceleration = -9.8f;
+
+    public static readonly Dictionary<string, float> weight_conversions = new Dictionary<string, float> {
+        {"Kg", 1},
+        {"g", 0.001f},
+        {"lbs", 0.45351473922f},
+    };
+
+    public static readonly Dictionary<string, float> distance_conversions = new Dictionary<string, float> {
+        {"m", 1},
+        {"cm", 0.01f},
+        {"\"", 0.0254f},
+        {"ft", 0.30478512648f},
+    };
+
+    float TorqueTelescope => telescope_mass_N * telescope_distance_m;
+    float TorqueCounterweight => this.counterweights.Select(counterweight => counterweight.counterweight_mass_N * counterweight.counterweight_distance_m).Sum();
+
+    float Angle {
+        get => (TorqueTelescope < TorqueCounterweight ? -90 - Math.Min(45, Math.Abs(TorqueTelescope) - Math.Abs(TorqueCounterweight)) : -90 + Math.Min(45, Math.Abs(TorqueCounterweight) - Math.Abs(TorqueTelescope)) );
+    }
+
+    float telescope_mass_raw;
+    string telescope_mass_units = "Kg";
+    float telescope_mass_kg => telescope_mass_raw * weight_conversions[telescope_mass_units];
+    float telescope_mass_N => telescope_mass_kg * gravity_acceleration;
+    float telescope_distance_raw;
+    string telescope_distance_units = "cm";
+    float telescope_distance_m => telescope_distance_raw * distance_conversions[telescope_distance_units];
+
+    List<Data.Counterweight> counterweights = new List<Data.Counterweight> {
+        new Data.Counterweight() // Default to 1 counterweight by default
+    };
+
+    private void add() {
+        counterweights.Add(new Data.Counterweight());
+    }
+
+    private void del() {
+        if (counterweights.Count > 0)
+            counterweights.RemoveAt(counterweights.Count - 1);
+    }
+
+}

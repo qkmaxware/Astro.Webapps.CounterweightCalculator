@@ -1,0 +1,16 @@
+body {
+    background-color: #1e2124;
+    color: white; 
+}
+
+input {
+    color: white !important;
+    background-color: #36393e !important;
+    margin-bottom: 12px;
+}
+
+select {
+    color: white !important;
+    background-color: #36393e !important;
+    margin-bottom: 12px;
+}

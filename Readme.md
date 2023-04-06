@@ -1,0 +1,1 @@
+# Equatorial Mount Counterweight Calculator
