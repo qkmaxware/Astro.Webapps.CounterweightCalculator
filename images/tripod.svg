@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="256"
+   height="256"
+   viewBox="0 0 67.733332 67.733335"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   sodipodi:docname="tripod.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#636363"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="true"
+     inkscape:document-units="mm"
+     showgrid="false"
+     units="px"
+     inkscape:zoom="4.5304435"
+     inkscape:cx="61.252282"
+     inkscape:cy="140.05251"
+     inkscape:window-width="2560"
+     inkscape:window-height="1377"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <sodipodi:guide
+       position="0,67.733334"
+       orientation="127.99999,0"
+       id="guide3928" />
+    <sodipodi:guide
+       position="0,33.866669"
+       orientation="0,127.99999"
+       id="guide3930" />
+    <sodipodi:guide
+       position="33.866665,33.866669"
+       orientation="-127.99999,0"
+       id="guide3932" />
+    <sodipodi:guide
+       position="33.866665,67.733334"
+       orientation="0,-127.99999"
+       id="guide3934" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2">
+    <marker
+       style="overflow:visible;"
+       id="Arrow1Mend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4) rotate(180) translate(10,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt;"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path4046" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="Arrow1Lend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.8) rotate(180) translate(12.5,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt;"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path4040" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="Arrow1Send"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow1Send"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.2) rotate(180) translate(6,0)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt;"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         id="path4052" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow2Sstart"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Sstart"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.3) translate(-2.3,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="fill-rule:evenodd;fill:context-stroke;stroke-width:0.62500000;stroke-linejoin:round"
+         id="path4067" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       id="rect1141"
+       style="fill:#000000;stroke:#000000;stroke-width:0.702781;stroke-linecap:round;stroke-linejoin:round"
+       d="m 30.055421,30.422326 c -0.07788,0 -0.140111,0.06286 -0.140111,0.140754 v 8.218732 l -7.269287,27.130266 c -0.124625,0.465107 0.149091,0.939981 0.614197,1.06461 0.465109,0.124625 0.939984,-0.149729 1.064609,-0.61484 l 6.889894,-25.713769 h 0.673698 1.203443 v 21.791863 c 0,0.366462 0.295078,0.661542 0.661542,0.661542 0.366462,0 0.661542,-0.29508 0.661542,-0.661542 V 40.648079 h 1.414575 0.436335 l 7.01081,26.163541 c 0.124624,0.465108 0.598864,0.739463 1.063969,0.614838 0.465109,-0.124624 0.739464,-0.599499 0.614839,-1.06461 L 37.686192,39.231585 v -0.0288 c 0.0377,-0.150455 0.05822,-0.307774 0.05822,-0.470246 v -6.39469 c 0,-0.155528 -0.02355,-0.304521 -0.05822,-0.449134 v -1.325643 c 0,-0.07789 -0.06222,-0.140753 -0.140117,-0.140753 h -1.716552 -3.941102 z" />
+  </g>
+</svg>
