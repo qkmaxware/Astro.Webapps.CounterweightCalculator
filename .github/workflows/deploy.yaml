@@ -5,6 +5,8 @@ on:
     - released
     branches: 
     - "root"
+permissions:
+  contents: write
 jobs:
   deploy:
     name: Deploy Github Pages
