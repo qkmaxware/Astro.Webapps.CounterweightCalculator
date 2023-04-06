@@ -19,7 +19,7 @@ jobs:
       - name: Setup Dotnet
         uses: actions/setup-dotnet@v1 
         with:
-          dotnet-version: '6.0.x' # SDK Version to use
+          dotnet-version: '7.0.x' # SDK Version to use
 
       - name: Change base-tag
         run: sed -i 's/<base href="\/" \/>/<base href="\/Astro.Webapps.CounterweightCalculator\/" \/>/g' wwwroot/index.html
